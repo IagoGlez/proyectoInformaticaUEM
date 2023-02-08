@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class PPT extends Application {
+	private String test;
 	private String opcionJugador;
 	private String opcionRival;
 	private String ganador;
