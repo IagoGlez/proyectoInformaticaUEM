@@ -2,7 +2,7 @@ package control;
 
 import java.util.Comparator;
 
-public class ComparadorP implements Comparator<Perfil>{
+public class ComparadorP implements Comparator<Perfil>{//Lo uso para ordenar los perfiles. Ver "ordenar()" en sistema.
 	int p= 0;
 
 	public int compare(Perfil p1, Perfil p2) {

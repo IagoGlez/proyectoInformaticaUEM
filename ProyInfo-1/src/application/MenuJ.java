@@ -25,7 +25,7 @@ public static void display() {
         
 		Button minas = new Button("Buscaminas.");
         
-		//cargar.setOnAction(e->b=Sistema.buscarP(textField.getText(),b));
+		
         minas.setOnAction(event -> {
         	window.close();
         	Minas m = new Minas();
@@ -42,7 +42,9 @@ public static void display() {
         });
         
         
-        
+        /*
+         * En las llamadas a juegos uso una forma diferente llamar a los menús, dejando de abusar del "static".
+         */
         
 		Button ppt = new Button("P,P & T.");
 		ppt.setOnAction(event -> {
@@ -78,9 +80,7 @@ public static void display() {
         window.setScene(scene);
         window.show();
         
-        /*primaryStage.setTitle("Menú");
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
+       
         
         
 	}

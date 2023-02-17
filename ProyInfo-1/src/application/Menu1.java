@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 public class Menu1 {
 	static boolean b =true;//Este boolean lo uso para varios checks a la hora de pulsar botones.
 	
+	/*
+	 * Cuando empezé a aprender JavaFX lo que vi en tutoriales era un uso constante de "static". Más adelante entendí mejor el funcionamiento de las cosas y usé otro forma
+	 * para llamar a los menús. Esta otra forma, creo yo más correcta, se puede ver a la hora de llamar a los juegos en los ActionEvents de MenuJ(uegos).
+	 */
 	
     
     public static void show() {

@@ -1,6 +1,7 @@
 package control;
 
 import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -23,7 +24,7 @@ public  class Sistema {
 
 	
 	
-	public static void  cargarP() {
+	public static void  cargarP() {//Carga los perfiles de un archivo .txt separado por ";". OJO con las tabulaciones.
 		
 		
 		
@@ -80,12 +81,15 @@ public  class Sistema {
 					
 				
 				}//Fin for
-				//jug2.partidas=jug.partidas;
+				
 				perfiles.add(jug2);
 			}
 			}//Fin while
+			
+			//Líneas de control.
 			System.out.println(perfiles.size());
 				
+			
 				System.out.println(perfiles.firstElement().nombre+"vector");
 				System.out.println(perfiles.firstElement().partidas[0][1]+"vector");
 				System.out.println(perfiles.firstElement().partidas[1][1]+"vector");
@@ -96,13 +100,7 @@ public  class Sistema {
 				System.out.println(perfiles.elementAt(2).partidas[0][0]+"vector1");
 				System.out.println(perfiles.elementAt(2).partidas[1][0]+"vector1");
 				
-				/*ComparadorP comp = new  ComparadorP();
-				comp.p=2;
-				Collections.sort(perfiles,comp);
-				System.out.println(perfiles.firstElement().nombre+"comparacion");*/
-				/*System.out.println(perfiles.firstElement().nombre+"vector ordenado");
-				System.out.println(perfiles.elementAt(1).nombre+"vector1 ordenado");
-				System.out.println(perfiles.elementAt(2).nombre+"vector2 ordenado");*/
+				
 				
 			
 		
@@ -118,21 +116,7 @@ public  class Sistema {
 	public static boolean buscarP(String n ) {//Busca un perfil en el vector.
 		Boolean encontrado = false;
 		System.out.println( n+" NOMBRE A BUSCAR BUSCAR.");
-		//int j= 0;
-		/*while(!encontrado&&j<perfiles.size()) {
-			System.out.println( perfiles.elementAt(j).nombre+" CICLO BUSCAR."+n);
-			if(perfiles.elementAt(j).nombre.equals(n)) {
-				encontrado= true;
-				jug = perfiles.elementAt(j);
-				System.out.println("Perfil Encontrado."+jug.partidas[0][1]+" ... "+ perfiles.elementAt(j).partidas[1][1]);
-				
-				break;
-				
-			}
-			j++;
-			
-			
-		}*/
+	
 		
 		for (int j = 0; j < perfiles.size(); j++) {
 		    System.out.println(perfiles.elementAt(j).nombre + " CICLO BUSCAR." + n+j);
@@ -145,22 +129,7 @@ public  class Sistema {
 		}
 		
 		
-		/*for (int i =0; i<perfiles.size(); i++) {
-			
-			if(i== perfiles.size()-1) {
-				encontrado = false;
-			}
-			System.out.println( perfiles.elementAt(i).nombre+" CICLO BUSCAR.");
-			if(perfiles.elementAt(i).nombre.equals(n)) {
-				encontrado= true;
-				jug = perfiles.elementAt(i);
-				System.out.println("Perfil Encontrado."+jug.partidas[0][1]+" ... "+ perfiles.elementAt(i).partidas[1][1]);
-				i=perfiles.size()+1;
-				
-				
-			}
-			
-		}*/
+		
 	    
 		if(!encontrado) {
 			System.out.println("Perfil NO Encontrado.");
@@ -201,7 +170,7 @@ Boolean repetido = false;
 	}
 	
 	
-	public static String ordenar(int i) {
+	public static String ordenar(int i) {//El int "i" lo uso para trabajar sobre la columna deseada.
 		ComparadorP comp = new ComparadorP();
 		
 		comp.p=i;
@@ -230,7 +199,7 @@ Boolean repetido = false;
 	public static boolean checkJug() {//Miramos si hay algún perfil cargado./*Esta función es importante pero sinceramente
 		boolean t= true;
 		
-		//no está muy bien implementada.
+		//Honestamente, esto pdoría se un getter, pero no se me ocurrión en su momento y bueno, no quiero rehacer todas las llamadas.
 		/*
 		 * OJO, LÓGICA INVERTIDA PARA FUNCIONAR CON nombreRepetido();
 		 */
@@ -244,7 +213,7 @@ Boolean repetido = false;
 		return t;
 	}
 	
-	public static int[] cargarResultados(int [] n, int p) {//Carga los resultados.
+	public static int[] cargarResultados(int [] n, int p) {//Carga los resultados del perfil.
 		n[0]= jug.partidas[0][p];//Victorias.
 		n[1]= jug.partidas[1][p];//Partidas jugadas.
 		
@@ -253,7 +222,7 @@ Boolean repetido = false;
 		
 	}
 	
-	public static void guardarResultados(int [] n, int p) {//Guardar los resultados.
+	public static void guardarResultados(int [] n, int p) {//Guardar los resultados. El int que entra como argumento sirve para conocer en que columna de array guardamos.
 		
 		if(p>1) {//Para guardar el record de Pong, en vez de sumar victorias.
 			System.out.println("Resultados: "+ "Victorias"+jug.partidas[0][p]+"Derrotas"+jug.partidas[1][p]);
@@ -300,10 +269,7 @@ public static void guardarVectores() {//GUARDAR EL VECTOR EN .txt AL FINALIZAR E
         	
         }
         	
-    	/*for (int i : perfiles) {
-            bw.write(String.valueOf(i));
-            bw.newLine();
-        }*/
+    	
         System.out.println("Vector guardado en " + fileName);
     } catch (IOException e) {
         System.out.println("Error al escribir en el archivo " + fileName);
@@ -312,7 +278,7 @@ public static void guardarVectores() {//GUARDAR EL VECTOR EN .txt AL FINALIZAR E
 }
 	
 	
-	public static void devolverPerfil() {//Devolver perfil al vextor para guardar otro.TIENE QUE SOBREESCRIBIR EL YA EXISTENTE.
+	public static void devolverPerfil() {//Devolver perfil.TIENE QUE SOBREESCRIBIR EL YA EXISTENTE. Eliminó el que tenga el mismo nombre y lo añado de nuevo.
 		boolean t=true;
 		t=nombreRepetido(jug.nombre);
 		if(t) {//Si existe, lo buscamos y remplazamos.
